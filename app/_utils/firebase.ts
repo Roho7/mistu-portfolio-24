@@ -3,12 +3,12 @@ import { getStorage } from "firebase/storage";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCpHV3oZ3gXlPdde728hgcvxWkCHUjI-sg",
-  authDomain: "react-portfolio-23.firebaseapp.com",
-  projectId: "react-portfolio-23",
-  storageBucket: "react-portfolio-23.appspot.com",
-  messagingSenderId: "391598958434",
-  appId: "1:391598958434:web:fd3cb97f9aac4a6ff3ae3b",
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 
 const app = initializeApp(firebaseConfig);
