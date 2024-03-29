@@ -1,11 +1,14 @@
 import { useRouter } from "next/navigation";
 import React from "react";
 import { ProjectType } from "../_utils/types";
+import { useProject } from "../_providers/useProject";
 
 function Card(props: ProjectType) {
   const router = useRouter();
+  const { setActiveProjectId } = useProject();
 
   const handleCardClick = (link: string) => {
+    setActiveProjectId(link);
     router.push(`/project/${link}`);
   };
 

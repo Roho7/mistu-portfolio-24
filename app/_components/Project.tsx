@@ -1,9 +1,10 @@
 import Card from "./Card";
 import { useHorizontalScroll } from "../_hooks/useHorizontalScroll";
-import { ProjectType } from "../_utils/types";
+import { useProject } from "../_providers/useProject";
 
-function Project({ data }: { data: ProjectType[] }) {
+function Project() {
   const scrollRef = useHorizontalScroll();
+  const { projectList } = useProject();
 
   return (
     <section className="relative mt-20 mb-20 md:mt-40 md:mb-40">
@@ -17,7 +18,7 @@ function Project({ data }: { data: ProjectType[] }) {
         <div
           className="relative cards w-full overflow-x-scroll flex gap-10 md:gap-20 px-10 md:px-20 cursor-all-scroll"
           ref={scrollRef}>
-          {data.map((item) => {
+          {projectList.map((item) => {
             return (
               <Card
                 key={item.Id}

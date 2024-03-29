@@ -1,6 +1,11 @@
 "use client";
+import { getSingleProject } from "@/app/_actions/projects.actions";
+import Footer from "@/app/_components/Footer";
+import PopupProject from "@/app/_components/PopupProject";
+import Topbar from "@/app/_components/Topbar";
 import { db } from "@/app/_utils/firebase";
 import { ProjectType } from "@/app/_utils/types";
+import clsx from "clsx";
 import { doc, getDoc } from "firebase/firestore";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -10,28 +15,42 @@ import { FaAngleLeft } from "react-icons/fa";
 function ProjectPage({ params }: { params: { id: string } }) {
   const router = useRouter();
   const [project, setProject] = useState<ProjectType>();
+  const [popup, setPopup] = useState(false);
   const handleBackButton = () => {
-    router.push("/");
+    router.back();
   };
-
-  const projectData = doc(db, "Project", params.id);
 
   useEffect(() => {
     const getProjectData = async () => {
       try {
-        const data = await getDoc(projectData);
-        const filteredData = data.data();
+        const data = await getSingleProject(params.id);
 
-        setProject(filteredData as ProjectType);
+        setProject(data as ProjectType);
       } catch (err) {
         console.log(err);
       }
     };
     getProjectData();
+
+    const timeout = setTimeout(() => {
+      setPopup(true);
+    }, 3000);
+
+    return () => {
+      clearTimeout(timeout);
+    };
   }, []);
 
   return project ? (
     <div>
+      <Topbar />
+      <div
+        className={clsx(
+          "absolute transition-all duration-500 top-10 ",
+          popup ? "right-10" : "right-[-100%]",
+        )}>
+        <PopupProject />
+      </div>
       <button className="m-8 mb-0" onClick={handleBackButton}>
         <FaAngleLeft /> Back
       </button>
@@ -76,6 +95,7 @@ function ProjectPage({ params }: { params: { id: string } }) {
           </div>
         )}
       </div>
+      <Footer />
     </div>
   ) : null;
 }

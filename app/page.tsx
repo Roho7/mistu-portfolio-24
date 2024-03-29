@@ -1,9 +1,7 @@
 "use client";
 import React from "react";
-import { useState, useEffect } from "react";
 import Logo from "../assets/logo.png";
 import Noise from "../assets/noise-blog.png";
-import { getDocs, collection } from "@firebase/firestore";
 import Topbar from "./_components/Topbar";
 import SvgGrid from "./_components/SvgGrid";
 import { FaStarOfLife } from "react-icons/fa";
@@ -12,33 +10,14 @@ import Footer from "./_components/Footer";
 import Project from "./_components/Project";
 import Quote from "./_components/Quote";
 import Skills from "./_components/Skills";
-import { ProjectType } from "./_utils/types";
 import Image from "next/image";
 import { streamers } from "./_utils/streamerData";
-import { db } from "./_utils/firebase";
 import Streamer from "./_components/Streamer";
 import { handleScrollSvg } from "./_utils/scroll";
 
 function Page() {
   window.addEventListener("scroll", handleScrollSvg);
   window.addEventListener("touchmove", handleScrollSvg);
-  const projectData = collection(db, "Project");
-  const [projectList, setProjectList] = useState<ProjectType[]>([]);
-  useEffect(() => {
-    const getProjectData = async () => {
-      try {
-        const data = await getDocs(projectData);
-        const filteredData = data.docs.map((doc) => ({
-          ...(doc.data() as ProjectType),
-          Id: doc.id,
-        }));
-        setProjectList(filteredData);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    getProjectData();
-  }, []);
 
   return (
     <>
@@ -75,7 +54,7 @@ function Page() {
           })}
         </div>
       </div>
-      <Project data={projectList} />
+      <Project />
       <Quote />
       <About />
       <Skills />

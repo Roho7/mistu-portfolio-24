@@ -1,11 +1,23 @@
 import { useRouter } from "next/navigation";
+import Logo from "../../assets/logo.png";
 import React from "react";
+import Image from "next/image";
 import { FaGithub, FaTwitterSquare, FaLinkedin } from "react-icons/fa";
 
 function Topbar() {
   const router = useRouter();
   return (
     <div className="p-4 w-screen flex text-white justify-center">
+      {window.location.pathname !== "/" && (
+        <div
+          className="h-7 w-7 mb-3 object-contain absolute left-10"
+          role="button"
+          onClick={() => {
+            router.push("/");
+          }}>
+          <Image src={Logo} alt="" />
+        </div>
+      )}
       <div className="flex gap-8">
         <FaGithub
           onClick={() => router.push("https://github.com/Roho7")}

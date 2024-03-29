@@ -1,13 +1,24 @@
-import { collection, getDocs } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 import { db } from "../_utils/firebase";
 import { ProjectType } from "../_utils/types";
 
-const getProjects = async () => {
-  const projectData = collection(db, "Project");
+export const getProjects = async () => {
+  const dataRef = collection(db, "Project");
 
-  const data = await getDocs(projectData);
+  const data = await getDocs(dataRef);
   const filteredData = data.docs.map((doc) => ({
     ...(doc.data() as ProjectType),
     Id: doc.id,
   }));
+
+  return filteredData;
+};
+
+export const getSingleProject = async (id: string) => {
+  const projectRef = doc(db, "Project", id);
+
+  const data = await getDoc(projectRef);
+  const filteredData = data.data();
+
+  return filteredData as ProjectType;
 };
