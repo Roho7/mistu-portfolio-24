@@ -99,7 +99,7 @@ button {
 }
 
 .streamer-text {
-  @apply flex items-center whitespace-nowrap md:text-3xl;
+  @apply flex items-center md:items-center whitespace-nowrap md:text-3xl;
 }
 
 .streamer-container1 {

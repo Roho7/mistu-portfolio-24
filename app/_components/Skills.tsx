@@ -32,10 +32,10 @@ function Skills() {
         <h1>Skills</h1>
         <div className="absolute h-0.5 w-full bg-grass-500"></div>
       </div>
-      <div className="grid md:grid-cols-4 md:gap-16 p-10">
+      <div className="grid gap-y-8 md:grid-cols-4 md:gap-16 p-10">
         <div>
           {skillArray
-            .filter((item) => item.type === "development")
+            .filter((item) => item.type === "languages")
             .map((skill, index) => {
               return (
                 <div
@@ -51,7 +51,7 @@ function Skills() {
         </div>
         <div>
           {skillArray
-            .filter((item) => item.type === "languages")
+            .filter((item) => item.type === "development")
             .map((skill, index) => {
               return (
                 <div

@@ -20,6 +20,7 @@ import {
   SiAdobephotoshop,
   SiObsidian,
   SiNotion,
+  SiCsharp,
 } from "react-icons/si";
 
 export const streamers = {
@@ -108,6 +109,11 @@ export const skillArray = [
     type: "languages",
     name: "C",
     icon: <SiC />,
+  },
+  {
+    type: "languages",
+    name: "C#",
+    icon: <SiCsharp />,
   },
   {
     type: "ui",

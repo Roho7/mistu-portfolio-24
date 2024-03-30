@@ -38,7 +38,7 @@ const Dropdown = ({ options, onclick, children }: DropdownProps) => {
     <div className="relative" ref={dropdownRef}>
       {filter && (
         <MdCancel
-          className="absolute -right-[10%] -top-[30%] text-grass-500 h-3 w-3"
+          className="absolute -right-[15%] -top-2 text-grass-500 h-3 w-3"
           role="button"
           onClick={async () => {
             setFilter(null);
