@@ -9,4 +9,7 @@ export type ProjectType = {
   Description?: string;
   Link?: string;
   Image?: string;
+  Category?: string;
+  Timestamp?: string;
+  Relevance: string;
 };

@@ -11,13 +11,15 @@ import Project from "./_components/Project";
 import Quote from "./_components/Quote";
 import Skills from "./_components/Skills";
 import Image from "next/image";
-import { streamers } from "./_utils/streamerData";
 import Streamer from "./_components/Streamer";
 import { handleScrollSvg } from "./_utils/scroll";
+import { streamers } from "./_utils/data";
 
 function Page() {
-  window.addEventListener("scroll", handleScrollSvg);
-  window.addEventListener("touchmove", handleScrollSvg);
+  if (typeof window !== "undefined") {
+    window.addEventListener("scroll", handleScrollSvg);
+    window.addEventListener("touchmove", handleScrollSvg);
+  }
 
   return (
     <>
@@ -47,8 +49,7 @@ function Page() {
           {streamers.streamerArray2.map((txt, index) => {
             return (
               <div key={index} className="streamer-text ">
-                <span>{txt}</span>
-                <FaStarOfLife className="mx-4 text-grass-500" />
+                <Streamer text={txt} />
               </div>
             );
           })}

@@ -8,7 +8,7 @@ function Topbar() {
   const router = useRouter();
   return (
     <div className="p-4 w-screen flex text-white justify-center">
-      {window.location.pathname !== "/" && (
+      {typeof window !== "undefined" && window.location.pathname !== "/" && (
         <div
           className="h-7 w-7 mb-3 object-contain absolute left-10"
           role="button"
