@@ -17,11 +17,12 @@ function Project() {
             <h1>Projects</h1>
             <div className="absolute h-0.5 w-full bg-grass-500"></div>
           </div>
-          <div className="absolute left-20 top-1/2 flex gap-4">
+          <div className="absolute left-2 md:left-20 top-1/2 flex gap-4">
             <Dropdown
               options={["design", "development"]}
               onclick={handleFilter}>
-              <FiFilter /> Filter
+              <FiFilter />
+              Filter
             </Dropdown>
             {/* <Dropdown options={["date", "relevance"]} onclick={handleSort}>
               <BiSort /> Sort

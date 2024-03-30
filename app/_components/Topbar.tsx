@@ -10,7 +10,7 @@ function Topbar() {
     <div className="p-4 w-screen flex text-white justify-center">
       {typeof window !== "undefined" && window.location.pathname !== "/" && (
         <div
-          className="h-7 w-7 mb-3 object-contain absolute left-10"
+          className="h-7 w-7 mb-3 object-contain absolute left-8 md:left-10"
           role="button"
           onClick={() => {
             router.push("/");
