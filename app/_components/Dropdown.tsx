@@ -55,9 +55,10 @@ const Dropdown = ({ options, onclick, children }: DropdownProps) => {
       </button>
       {dropwdownOpen && (
         <div className=" min-w-full text-xs bg-white text-black absolute bottom-[110%] rounded-md border p-1 ">
-          {options.map((option: string) => {
+          {options.map((option: string, index) => {
             return (
               <div
+                key={index}
                 className={clsx(
                   "px-1 py-0.5 rounded hover:bg-grass-100 capitalize",
                   filter === option && "bg-grass-100",

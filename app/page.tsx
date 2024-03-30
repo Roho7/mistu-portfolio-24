@@ -41,17 +41,13 @@ function Page() {
       </div>
       <div className="mt-20 md:mt-80 overflow-x-hidden">
         <div className="streamer-container1">
-          {streamers.streamerArray1.map((txt) => {
-            return <Streamer text={txt} />;
+          {streamers.streamerArray1.map((txt, index) => {
+            return <Streamer text={txt} key={index} />;
           })}
         </div>
         <div className="streamer-container2 ">
           {streamers.streamerArray2.map((txt, index) => {
-            return (
-              <div key={index} className="streamer-text ">
-                <Streamer text={txt} />
-              </div>
-            );
+            return <Streamer text={txt} key={index} />;
           })}
         </div>
       </div>

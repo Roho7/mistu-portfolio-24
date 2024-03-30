@@ -9,7 +9,7 @@ function Quote() {
           <BiSolidQuoteRight />
         </h2>
         <h3>
-          <strike>Cool Design, Complex Code</strike>
+          <span className="line-through">Cool Design, Complex Code</span>
         </h3>
         {/* <h3>
           <strike>Great Design, Poor Code</strike>
