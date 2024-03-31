@@ -24,6 +24,7 @@ const Shape = () => {
     ref.current.rotation.y += 0.001;
     ref.current.rotation.z += 0.001;
 
+    if (window.innerWidth < 768) return;
     easing.damp3(
       state.camera.position,
       [
