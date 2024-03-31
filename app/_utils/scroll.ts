@@ -1,5 +1,5 @@
 export const handleScrollSvg = () => {
-  const noise: HTMLDivElement | null = document.querySelector(".noise");
+  // const noise: HTMLDivElement | null = document.querySelector(".noise");
   const streamer1: HTMLDivElement | null = document.querySelector(
     ".streamer-container1",
   );
@@ -8,11 +8,11 @@ export const handleScrollSvg = () => {
   );
   var widthScreen = document.documentElement.clientWidth || window.innerWidth;
 
-  if (!noise || !streamer1 || !streamer2) return;
+  if (!streamer1 || !streamer2) return;
   const scrollPos = window.scrollY;
   const moveAmt = scrollPos / 4;
 
-  noise.style.transform = `translateX(${moveAmt}px)`;
+  // noise.style.transform = `translateX(${moveAmt}px)`;
   if (widthScreen > 767) {
     streamer1.style.transform = `translateX(${-moveAmt}px)`;
     streamer2.style.transform = `translateX(${moveAmt}px)`;

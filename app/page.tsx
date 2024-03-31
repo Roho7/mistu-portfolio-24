@@ -14,6 +14,7 @@ import Image from "next/image";
 import Streamer from "./_components/Streamer";
 import { handleScrollSvg } from "./_utils/scroll";
 import { streamers } from "./_utils/data";
+import Scene from "./_components/3DScene";
 
 function Page() {
   if (typeof window !== "undefined") {
@@ -24,8 +25,8 @@ function Page() {
   return (
     <>
       <Topbar />
-      <div className="flex relative mt-10">
-        <div className="mx-4 lg:mx-20">
+      <div className="flex relative mt-10" id="hero">
+        <div className="mx-4 lg:mx-20 z-10">
           <div className="h-10 w-10 mb-3 object-contain">
             <Image src={Logo} alt="" />
           </div>
@@ -34,10 +35,11 @@ function Page() {
           <h1 className="text-grass-500">Design</h1>
           <h1>Development</h1>
         </div>
-        <SvgGrid />
-        <div className="noise absolute -left-1/6 top-1/6 opacity-60">
+        <Scene />
+        {/* <SvgGrid /> */}
+        {/* <div className="noise absolute -left-1/6 top-1/6 opacity-60">
           <Image src={Noise} alt="" />
-        </div>
+        </div> */}
       </div>
       <div className="mt-20 md:mt-80 overflow-x-hidden">
         <div className="streamer-container1">
