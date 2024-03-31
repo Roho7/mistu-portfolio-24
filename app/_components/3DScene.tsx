@@ -6,7 +6,7 @@ import {
   MeshTransmissionMaterial,
   useGLTF,
 } from "@react-three/drei";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Canvas, useFrame, Vector3 } from "@react-three/fiber";
 import { useEffect, useRef, useState } from "react";
 import { BufferGeometry, Mesh, NormalBufferAttributes } from "three";
 import { FilmPass, WaterPass, UnrealBloomPass, LUTPass } from "three-stdlib";
@@ -17,14 +17,16 @@ extend({ WaterPass, UnrealBloomPass, FilmPass, LUTPass });
 
 const Shape = () => {
   const ref = useRef<Mesh<BufferGeometry<NormalBufferAttributes>>>(null);
+  const [scale, setScale] = useState(0.5);
+  const [position, setPosition] = useState([5, 0, 0]);
 
   useFrame((state, delta) => {
     if (!ref.current) return;
+    if (window.innerWidth < 768) return;
     ref.current.rotation.x += 0.001;
     ref.current.rotation.y += 0.001;
     ref.current.rotation.z += 0.001;
 
-    if (window.innerWidth < 768) return;
     easing.damp3(
       state.camera.position,
       [
@@ -38,8 +40,18 @@ const Shape = () => {
     state.camera.lookAt(0, 0, 0);
   });
 
+  useEffect(() => {
+    setScale(window.innerWidth < 768 ? 0.3 : 0.5);
+    setPosition(window.innerWidth < 768 ? [2, 2, 0] : [4, 0, 0]);
+  }, [window.innerWidth]);
+
   return (
-    <mesh ref={ref} castShadow receiveShadow scale={0.5}>
+    <mesh
+      ref={ref}
+      castShadow
+      receiveShadow
+      scale={scale}
+      position={position as Vector3}>
       <torusKnotGeometry args={[3, 1, 256, 32]} />
 
       {/* <meshStandardMaterial metalness={0.3} roughness={9} /> */}
@@ -67,9 +79,7 @@ const Scene = () => {
   }, []);
   return (
     eventSource && (
-      <div
-        id="canvas-container"
-        className="absolute -top-20 -right-[30vw] w-screen h-screen">
+      <div id="canvas-container" className="absolute -top-20 w-screen h-screen">
         <Canvas
           eventSource={eventSource}
           eventPrefix="client"
@@ -91,7 +101,7 @@ const Scene = () => {
           castShadow
         /> */}
           <Shape />
-          <Environment preset="city" blur={10}>
+          <Environment preset="city">
             <Lightformer
               intensity={3}
               position={[10, 5, 0]}
