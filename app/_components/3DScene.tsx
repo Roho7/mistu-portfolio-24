@@ -1,32 +1,31 @@
 "use client";
 import {
-  Effects,
   Environment,
   Lightformer,
   MeshTransmissionMaterial,
-  useGLTF,
 } from "@react-three/drei";
-import { Canvas, useFrame, Vector3 } from "@react-three/fiber";
+import { Canvas, useFrame } from "@react-three/fiber";
 import { useEffect, useRef, useState } from "react";
 import { BufferGeometry, Mesh, NormalBufferAttributes } from "three";
-import { FilmPass, WaterPass, UnrealBloomPass, LUTPass } from "three-stdlib";
-import { extend } from "@react-three/fiber";
 import { easing } from "maath";
-
-extend({ WaterPass, UnrealBloomPass, FilmPass, LUTPass });
 
 const Shape = () => {
   const ref = useRef<Mesh<BufferGeometry<NormalBufferAttributes>>>(null);
-  const [scale, setScale] = useState(0.5);
-  const [position, setPosition] = useState([5, 0, 0]);
 
   useFrame((state, delta) => {
+    if (window.innerWidth < 768) {
+      ref.current?.position.set(1.5, 2.5, 0);
+      ref.current?.scale.set(0.3, 0.3, 0.3);
+    } else {
+      ref.current?.position.set(4, 1, 0);
+      ref.current?.scale.set(0.5, 0.5, 0.5);
+    }
     if (!ref.current) return;
-    if (window.innerWidth < 768) return;
     ref.current.rotation.x += 0.001;
     ref.current.rotation.y += 0.001;
     ref.current.rotation.z += 0.001;
 
+    if (window.innerWidth < 768) return;
     easing.damp3(
       state.camera.position,
       [
@@ -40,26 +39,13 @@ const Shape = () => {
     state.camera.lookAt(0, 0, 0);
   });
 
-  useEffect(() => {
-    setScale(window.innerWidth < 768 ? 0.3 : 0.5);
-    setPosition(window.innerWidth < 768 ? [2, 2, 0] : [4, 0, 0]);
-  }, [window.innerWidth]);
-
   return (
-    <mesh
-      ref={ref}
-      castShadow
-      receiveShadow
-      scale={scale}
-      position={position as Vector3}>
+    <mesh ref={ref} castShadow receiveShadow>
       <torusKnotGeometry args={[3, 1, 256, 32]} />
-
-      {/* <meshStandardMaterial metalness={0.3} roughness={9} /> */}
+      <meshStandardMaterial metalness={0.3} roughness={9} />
       <MeshTransmissionMaterial
         backside
         transmission={1.1}
-        // color={"#AEC926"}
-        // blendColor="#556508"
         backsideThickness={5}
         thickness={2}
       />
@@ -79,7 +65,7 @@ const Scene = () => {
   }, []);
   return (
     eventSource && (
-      <div id="canvas-container" className="absolute -top-20 w-screen h-screen">
+      <div id="canvas-container" className="absolute w-screen h-screen -top-10">
         <Canvas
           eventSource={eventSource}
           eventPrefix="client"
@@ -92,14 +78,6 @@ const Scene = () => {
             color="#AEC926"
             intensity={6}
           />
-          {/* <spotLight
-          position={[40, 20, 10]}
-          angle={0.15}
-          penumbra={1}
-          intensity={0.1}
-          distance={11}
-          castShadow
-        /> */}
           <Shape />
           <Environment preset="city">
             <Lightformer
@@ -109,12 +87,6 @@ const Scene = () => {
               onUpdate={(self) => self.lookAt(0, 0, 0)}
             />
           </Environment>
-          <Effects disableGamma>
-            {/* <waterPass ref={water} factor={1} /> */}
-            {/* <unrealBloomPass args={[undefined, 1, 1, 0]} /> */}
-            {/* <filmPass args={[10, 9, 1500, false]} /> */}
-            {/* <lUTPass lut={data.texture} intensity={0.75} /> */}
-          </Effects>
         </Canvas>
       </div>
     )

@@ -36,10 +36,6 @@ function Page() {
           <h1>Development</h1>
         </div>
         <Scene />
-        {/* <SvgGrid /> */}
-        {/* <div className="noise absolute -left-1/6 top-1/6 opacity-60">
-          <Image src={Noise} alt="" />
-        </div> */}
       </div>
       <div className="mt-20 md:mt-80 overflow-x-hidden">
         <div className="streamer-container1">
