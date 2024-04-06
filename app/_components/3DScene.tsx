@@ -1,31 +1,33 @@
 "use client";
+import React, { useRef, useEffect } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
 import {
+  MeshTransmissionMaterial,
   Environment,
   Lightformer,
-  MeshTransmissionMaterial,
 } from "@react-three/drei";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { useEffect, useRef, useState } from "react";
-import { BufferGeometry, Mesh, NormalBufferAttributes } from "three";
+import { BufferGeometry, Mesh } from "three";
 import { easing } from "maath";
 
 const Shape = () => {
-  const ref = useRef<Mesh<BufferGeometry<NormalBufferAttributes>>>(null);
+  const ref = useRef<Mesh<BufferGeometry>>(null);
 
+  const isMobile = window.innerWidth < 768;
   useFrame((state, delta) => {
-    if (window.innerWidth < 768) {
+    if (isMobile) {
       ref.current?.position.set(1.5, 2.5, 0);
       ref.current?.scale.set(0.3, 0.3, 0.3);
     } else {
       ref.current?.position.set(4, 1, 0);
       ref.current?.scale.set(0.5, 0.5, 0.5);
     }
+
     if (!ref.current) return;
     ref.current.rotation.x += 0.001;
     ref.current.rotation.y += 0.001;
     ref.current.rotation.z += 0.001;
 
-    if (window.innerWidth < 768) return;
+    if (isMobile) return;
     easing.damp3(
       state.camera.position,
       [
@@ -40,57 +42,50 @@ const Shape = () => {
   });
 
   return (
-    <mesh ref={ref} castShadow receiveShadow>
-      <torusKnotGeometry args={[3, 1, 256, 32]} />
-      <meshStandardMaterial metalness={0.3} roughness={9} />
+    <mesh ref={ref}>
+      <torusKnotGeometry args={[3, 1, 130, 32]} />
       <MeshTransmissionMaterial
-        backside
         transmission={1.1}
-        backsideThickness={5}
         thickness={2}
+        backside
+        backsideThickness={5}
       />
     </mesh>
   );
 };
 
 const Scene = () => {
-  const [eventSource, setEventSource] = useState<HTMLElement | null>(null);
+  const eventSourceRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
-    // This code runs after the component mounts, which means it's client-side
-    const heroElement = document.getElementById("hero");
-    if (heroElement) {
-      setEventSource(heroElement);
-    }
+    eventSourceRef.current = document.getElementById("hero");
   }, []);
-  return (
-    eventSource && (
-      <div id="canvas-container" className="absolute w-screen h-screen -top-10">
-        <Canvas
-          eventSource={eventSource}
-          eventPrefix="client"
-          shadows
-          camera={{ position: [0, 0, 20], fov: 20 }}>
-          <ambientLight intensity={0.6} color="#AEC926" />
 
-          <directionalLight
-            position={[-20, 90, 0]}
-            color="#AEC926"
-            intensity={6}
+  return eventSourceRef.current ? (
+    <div id="canvas-container" className="absolute w-screen h-screen -top-10">
+      <Canvas
+        eventSource={eventSourceRef.current}
+        eventPrefix="client"
+        shadows
+        camera={{ position: [0, 0, 20], fov: 20 }}>
+        <ambientLight intensity={0.6} color="#AEC926" />
+        <directionalLight
+          position={[-20, 90, 0]}
+          color="#AEC926"
+          intensity={6}
+        />
+        <Shape />
+        <Environment preset="city">
+          <Lightformer
+            intensity={3}
+            position={[10, 5, 0]}
+            scale={[10, 50, 1]}
+            onUpdate={(self) => self.lookAt(0, 0, 0)}
           />
-          <Shape />
-          <Environment preset="city">
-            <Lightformer
-              intensity={3}
-              position={[10, 5, 0]}
-              scale={[10, 50, 1]}
-              onUpdate={(self) => self.lookAt(0, 0, 0)}
-            />
-          </Environment>
-        </Canvas>
-      </div>
-    )
-  );
+        </Environment>
+      </Canvas>
+    </div>
+  ) : null;
 };
 
 export default Scene;
