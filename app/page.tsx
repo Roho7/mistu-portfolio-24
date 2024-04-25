@@ -35,6 +35,7 @@ function Page() {
           <h1 className="text-grass-500">Design</h1>
           <h1>Development</h1>
         </div>
+
         <Scene />
       </div>
       <div className="mt-20 md:mt-80 overflow-x-hidden">

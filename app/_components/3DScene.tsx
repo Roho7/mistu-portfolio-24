@@ -12,22 +12,15 @@ import { easing } from "maath";
 const Shape = () => {
   const ref = useRef<Mesh<BufferGeometry>>(null);
 
-  const isMobile = window.innerWidth < 768;
   useFrame((state, delta) => {
-    if (isMobile) {
-      ref.current?.position.set(1.5, 2.5, 0);
-      ref.current?.scale.set(0.3, 0.3, 0.3);
-    } else {
-      ref.current?.position.set(4, 1, 0);
-      ref.current?.scale.set(0.5, 0.5, 0.5);
-    }
+    ref.current?.position.set(4, 1, 0);
+    ref.current?.scale.set(0.5, 0.5, 0.5);
 
     if (!ref.current) return;
     ref.current.rotation.x += 0.001;
     ref.current.rotation.y += 0.001;
     ref.current.rotation.z += 0.001;
 
-    if (isMobile) return;
     easing.damp3(
       state.camera.position,
       [
@@ -62,7 +55,9 @@ const Scene = () => {
   }, []);
 
   return eventSourceRef.current ? (
-    <div id="canvas-container" className="absolute w-screen h-screen -top-10">
+    <div
+      id="canvas-container"
+      className="hidden lg:block absolute w-screen h-screen -top-10">
       <Canvas
         eventSource={eventSourceRef.current}
         eventPrefix="client"
