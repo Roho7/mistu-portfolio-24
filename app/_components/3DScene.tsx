@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import {
   MeshTransmissionMaterial,
@@ -49,17 +49,24 @@ const Shape = () => {
 
 const Scene = () => {
   const eventSourceRef = useRef<HTMLElement | null>(null);
+  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
-    eventSourceRef.current = document.getElementById("hero");
+    const heroElement = document.getElementById("hero");
+    eventSourceRef.current = heroElement;
+    if (heroElement) {
+      setIsReady(true);
+    }
   }, []);
 
-  return eventSourceRef.current ? (
+  return isReady ? (
     <div
       id="canvas-container"
-      className="hidden lg:block absolute w-screen h-screen -top-10">
+      className="hidden lg:flex absolute w-screen h-screen -top-10">
       <Canvas
-        eventSource={eventSourceRef.current}
+        eventSource={
+          eventSourceRef.current ? eventSourceRef.current : undefined
+        }
         eventPrefix="client"
         shadows
         camera={{ position: [0, 0, 20], fov: 20 }}>
