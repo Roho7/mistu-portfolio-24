@@ -14,12 +14,14 @@ interface ProjectContextType {
   projectList: ProjectType[];
   setProjectList: React.Dispatch<React.SetStateAction<ProjectType[]>>;
   filteredProjects: ProjectType[];
-  setFilteredProjects: React.Dispatch<React.SetStateAction<ProjectType[]>>;
   activeProjectId: string | null;
   setActiveProjectId: React.Dispatch<React.SetStateAction<string | null>>;
-  handleFilter: (category: string) => void;
-  // handleSort: (sort: string) => void;
+  filter: string | null;
+  setFilter: React.Dispatch<React.SetStateAction<string | null>>;
+  loading: boolean;
 }
+
+const DEFAULT_FILTER = "development";
 
 const ProjectContext = createContext<ProjectContextType>(null!);
 
@@ -27,34 +29,24 @@ export const ProjectProvider: React.FC<{
   children: React.ReactNode;
 }> = ({ children }) => {
   const [projectList, setProjectList] = useState<ProjectType[]>([]);
-  const [filteredProjects, setFilteredProjects] = useState<ProjectType[]>([]);
+  const [filter, setFilter] = useState<string | null>(DEFAULT_FILTER);
   const [activeProjectId, setActiveProjectId] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
 
   const fetchData = async () => {
-    const data = await getProjects();
-    setProjectList(data);
-    setFilteredProjects(data);
+    try {
+      const data = await getProjects();
+      setProjectList(data);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const handleFilter = async (category: string) => {
-    const filtered = projectList.filter(
-      (project) => project.Category === category,
-    );
-    setFilteredProjects(filtered);
-  };
-
-  // const handleSort = (sort: string) => {
-  //   let sortedList = [...filteredProjects];
-
-  //   if (sort === "relevance") {
-  //     sortedList.sort((a, b) => a.Relevance - b.Relevance);
-  //   } else if (sort === "date") {
-  //     sortedList.sort((a, b) => new Date(a.Timestamp) - new Date(b.Timestamp));
-  //   }
-
-  //   console.log(sortedList);
-  //   setFilteredProjects(sortedList);
-  // };
+  const filteredProjects = useMemo(() => {
+    return projectList.filter((project) => project.Category === filter);
+  }, [projectList, filter]);
 
   useEffect(() => {
     fetchData();
@@ -65,15 +57,16 @@ export const ProjectProvider: React.FC<{
       projectList,
       setProjectList,
       filteredProjects,
-      setFilteredProjects,
       activeProjectId,
       setActiveProjectId,
-      handleFilter,
+      filter,
+      setFilter,
+      loading,
       // handleSort,
       // filter,
       // setFilter,
     };
-  }, [projectList, filteredProjects]);
+  }, [filter, projectList, filteredProjects, loading]);
 
   return (
     <ProjectContext.Provider value={values}>{children}</ProjectContext.Provider>

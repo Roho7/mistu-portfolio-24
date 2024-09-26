@@ -6,18 +6,17 @@ import { FcCancel } from "react-icons/fc";
 import { MdCancel } from "react-icons/md";
 import { getProjects } from "../_actions/projects.actions";
 import { useProject } from "../_providers/useProject";
+import { FiFilter } from "react-icons/fi";
 
 type DropdownProps = {
   options: string[];
   onclick: (arg: string) => void;
-  children: React.ReactNode;
 };
 
-const Dropdown = ({ options, onclick, children }: DropdownProps) => {
-  const [filter, setFilter] = useState<string | null>(null);
+const Dropdown = ({ options, onclick }: DropdownProps) => {
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   const [dropwdownOpen, setDropdownOpen] = useState(false);
-  const { projectList, setFilteredProjects } = useProject();
+  const { projectList, setFilter, filter } = useProject();
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -38,19 +37,20 @@ const Dropdown = ({ options, onclick, children }: DropdownProps) => {
     <div className="relative" ref={dropdownRef}>
       {filter && (
         <MdCancel
-          className="absolute -right-[15%] -top-2 text-grass-500 h-3 w-3"
+          className="absolute -right-[10%] -top-2 text-grass-500 h-3 w-3"
           role="button"
           onClick={async () => {
             setFilter(null);
-            setFilteredProjects(projectList);
           }}
         />
       )}
       <button
-        className="border px-2 text-xs py-1 max-h-min hover:bg-white hover:text-black text-white border-white relative rounded-md"
+        className="border px-2 text-xs py-1 max-h-min hover:bg-white hover:text-black text-white border-white relative rounded-md capitalize"
         onClick={() => setDropdownOpen(!dropwdownOpen)}
-        role="button">
-        {children}
+        role="button"
+      >
+        <FiFilter />
+        {filter || "Filter"}
         {/* {filter && <BsCircleFill className="text-grass-500 h-1 w-1" />} */}
       </button>
       {dropwdownOpen && (
@@ -67,7 +67,8 @@ const Dropdown = ({ options, onclick, children }: DropdownProps) => {
                 onClick={() => {
                   setFilter(option);
                   onclick(option);
-                }}>
+                }}
+              >
                 {option}
               </div>
             );

@@ -14,6 +14,7 @@ export const getProjects = async () => {
   const dataRef = query(
     collection(db, "Project"),
     orderBy("Timestamp", "desc"),
+    where("hidden", "!=", true),
   );
 
   const data = await getDocs(dataRef);

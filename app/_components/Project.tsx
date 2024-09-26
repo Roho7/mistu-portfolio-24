@@ -4,10 +4,11 @@ import { useProject } from "../_providers/useProject";
 import Dropdown from "./Dropdown";
 import { BiSort } from "react-icons/bi";
 import { FiFilter } from "react-icons/fi";
+import Spinner from "./Spinner";
 
 function Project() {
   const scrollRef = useHorizontalScroll();
-  const { filteredProjects, handleFilter } = useProject();
+  const { filteredProjects, setFilter, loading } = useProject();
 
   return (
     <section className="relative mt-20 mb-20 md:mt-40 md:mb-40">
@@ -20,18 +21,15 @@ function Project() {
           <div className="absolute left-2 md:left-20 top-1/2 flex gap-4">
             <Dropdown
               options={["design", "development"]}
-              onclick={handleFilter}>
-              <FiFilter />
-              Filter
-            </Dropdown>
-            {/* <Dropdown options={["date", "relevance"]} onclick={handleSort}>
-              <BiSort /> Sort
-            </Dropdown> */}
+              onclick={(filter) => setFilter(filter)}
+            />
           </div>
         </div>
         <div
           className="relative cards w-full overflow-x-scroll flex gap-10 md:gap-20 px-10 md:px-20 cursor-all-scroll"
-          ref={scrollRef}>
+          ref={scrollRef}
+        >
+          {loading && <Spinner />}
           {filteredProjects.map((item) => {
             return (
               <Card
