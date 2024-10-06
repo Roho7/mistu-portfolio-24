@@ -46,7 +46,8 @@ function ProjectPage({ params }: { params: { id: string } }) {
         className={clsx(
           "absolute transition-all duration-500 top-10 ",
           popup ? "right-10" : "right-[-100%]",
-        )}>
+        )}
+      >
         <PopupProject />
       </div>
       <button className="m-8 mb-0" onClick={handleBackButton}>
@@ -68,7 +69,8 @@ function ProjectPage({ params }: { params: { id: string } }) {
                 project.Software2
                   ? " text-white text-sm p-2 border border-white rounded-full"
                   : "hidden"
-              }>
+              }
+            >
               {project.Software2}
             </span>
           </div>
@@ -76,12 +78,10 @@ function ProjectPage({ params }: { params: { id: string } }) {
             href={project.Link ?? "/"}
             className={
               project.Link ? "text-ash-500 hover:text-grass-500" : "hidden"
-            }>
+            }
+          >
             <p className="mt-4">View Project</p>
           </Link>
-        </div>
-        <div className="">
-          <img src={project.Image} className="object-cover" />
         </div>
         {project.Video && (
           <div className="h-72 md:h-screen">
@@ -89,9 +89,13 @@ function ProjectPage({ params }: { params: { id: string } }) {
               width="100%"
               height="100%"
               src={`https://www.youtube.com/embed/${project.Video}`}
-              className={project.Video ? "w-full h-full" : "hidden"}></iframe>
+              className={project.Video ? "w-full h-full" : "hidden"}
+            ></iframe>
           </div>
         )}
+        <div className="">
+          <img src={project.Image} className="object-cover" />
+        </div>
       </div>
       <Footer />
     </div>
