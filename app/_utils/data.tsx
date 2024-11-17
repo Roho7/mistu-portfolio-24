@@ -92,13 +92,13 @@ export const skillArray = [
   },
   {
     type: "languages",
-    name: "Javascript",
-    icon: <BiLogoJavascript />,
+    name: "Typescript",
+    icon: <BiLogoTypescript />,
   },
   {
     type: "languages",
-    name: "Typescript",
-    icon: <BiLogoTypescript />,
+    name: "Javascript",
+    icon: <BiLogoJavascript />,
   },
   {
     type: "languages",

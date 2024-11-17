@@ -54,7 +54,7 @@ function About() {
         <div className="grid lg:grid-cols-5 gap-4">
           <div className="about-cards p-8">
             <h1 className="text-2xl font-normal">Age</h1>
-            <h1 className="about-text">22</h1>
+            <h1 className="about-text">23</h1>
           </div>
           <div className="about-cards p-8">
             <h1 className="text-2xl font-normal">Nationality</h1>
