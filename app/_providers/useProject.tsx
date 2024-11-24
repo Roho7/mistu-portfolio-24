@@ -45,7 +45,7 @@ export const ProjectProvider: React.FC<{
   };
 
   const filteredProjects = useMemo(() => {
-    return projectList.filter((project) => project.Category === filter);
+    return filter ? projectList.filter((project) => project.Category === filter) : projectList;
   }, [projectList, filter]);
 
   useEffect(() => {

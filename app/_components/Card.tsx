@@ -3,6 +3,7 @@ import React from "react";
 import { ProjectType } from "../_utils/types";
 import { useProject } from "../_providers/useProject";
 import Image from "next/image";
+import Badge from "./Badge";
 
 function Card(props: ProjectType & { priority: boolean }) {
   const router = useRouter();
@@ -36,9 +37,7 @@ function Card(props: ProjectType & { priority: boolean }) {
             {props.Name}
           </h1>
           <h2 className="md:mb-2 font-display md:text-3xl">{props.Type}</h2>
-          <span className=" text-white text-xs md:text-sm py-1 px-2 md:p-2 border border-white rounded-full">
-            {props.Software1}
-          </span>
+          {props.Software1 && <Badge size="sm">{props.Software1}</Badge>}
         </div>
       </div>
     </div>

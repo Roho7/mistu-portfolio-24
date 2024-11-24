@@ -10,10 +10,19 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { Suspense, useEffect, useState } from "react";
-import { FaAngleLeft } from "react-icons/fa";
-import { headers } from "next/headers";
+import { FaAngleLeft, FaGithub, FaGlobe } from "react-icons/fa";
+import Button from "@/app/_components/Button";
+import Badge from "@/app/_components/Badge";
 
-
+function getProjectLinkType(link: string){
+  if(link.includes("youtube.com")){
+    return "youtube"
+  } else if(link.includes("github.com")){
+    return "github"
+  } else {
+    return "external"
+  }
+}
 
 function ProjectPage({ params }: { params: { id: string } }) {
   const router = useRouter();
@@ -55,38 +64,20 @@ function ProjectPage({ params }: { params: { id: string } }) {
       >
         <PopupProject />
       </div>
-      <button className="m-8 mb-0" onClick={handleBackButton}>
+      <Button size="md" color="grass" buttonProps={{ className: "m-8 mb-0" }} onClick={handleBackButton}>
         <FaAngleLeft /> Back
-      </button>
-
+      </Button>
       <div key={project.Id} className="relative flex flex-col">
         <div className="m-8 mt-2">
           <h1 className="">{project.Name}</h1>
           <h1 className="text-4xl mb-4 text-ash-100">{project.Type}</h1>
           <h2 className="font-bold text-xl">Context</h2>
           <h2 className="mb-4 md:w-1/2">{project.Description}</h2>
-          <div className="flex gap-4">
-            <span className=" text-white text-sm p-2 border border-white rounded-full">
-              {project.Software1}
-            </span>
-            <span
-              className={
-                project.Software2
-                  ? " text-white text-sm p-2 border border-white rounded-full"
-                  : "hidden"
-              }
-            >
-              {project.Software2}
-            </span>
+          <div className="flex gap-4 mb-2">
+            {project.Software1 && <Badge size="sm">{project.Software1}</Badge>}
+            {project.Software2 && <Badge size="sm">{project.Software2}</Badge>}
           </div>
-          <Link
-            href={project.Link ?? "/"}
-            className={
-              project.Link ? "text-ash-500 hover:text-grass-500" : "hidden"
-            }
-          >
-            <p className="mt-4">View Project</p>
-          </Link>
+          {project.Link && <Button size="sm" onClick={() => window.open(project.Link, "_blank")} color="white" icon={getProjectLinkType(project.Link) === "external" ? <FaGlobe /> : <FaGithub />}>View Project</Button>}
         </div>
         {project.Video && (
           <div className="h-72 md:h-screen">

@@ -9,6 +9,7 @@ import {
   BiLogoPython,
   BiLogoFigma,
 } from "react-icons/bi";
+import { FaReact } from "react-icons/fa";
 import { RiSupabaseFill } from "react-icons/ri";
 import {
   SiNextdotjs,
@@ -21,6 +22,7 @@ import {
   SiObsidian,
   SiNotion,
   SiCsharp,
+  SiUnity,
 } from "react-icons/si";
 
 export const streamers = {
@@ -62,6 +64,11 @@ export const skillArray = [
   },
   {
     type: "development",
+    name: "React Native",
+    icon: <FaReact />,
+  },
+  {
+    type: "development",
     name: "Tailwind",
     icon: <BiLogoTailwindCss />,
   },
@@ -87,8 +94,8 @@ export const skillArray = [
   },
   {
     type: "development",
-    name: "Jinja",
-    icon: <SiJinja />,
+    name: "Unity",
+    icon: <SiUnity />,
   },
   {
     type: "languages",

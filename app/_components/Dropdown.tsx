@@ -16,7 +16,7 @@ type DropdownProps = {
 const Dropdown = ({ options, onclick }: DropdownProps) => {
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   const [dropwdownOpen, setDropdownOpen] = useState(false);
-  const { projectList, setFilter, filter } = useProject();
+  const {  setFilter, filter } = useProject();
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -37,7 +37,7 @@ const Dropdown = ({ options, onclick }: DropdownProps) => {
     <div className="relative" ref={dropdownRef}>
       {filter && (
         <MdCancel
-          className="absolute -right-[10%] -top-2 text-grass-500 h-3 w-3"
+          className="absolute -right-[8px] -top-2 text-grass-500 h-3 w-3"
           role="button"
           onClick={async () => {
             setFilter(null);
