@@ -4,7 +4,7 @@ import { ProjectType } from "../_utils/types";
 import { useProject } from "../_providers/useProject";
 import Image from "next/image";
 
-function Card(props: ProjectType) {
+function Card(props: ProjectType & { priority: boolean }) {
   const router = useRouter();
   const { setActiveProjectId } = useProject();
 
@@ -13,17 +13,6 @@ function Card(props: ProjectType) {
     router.push(`/project/${link}`);
   };
 
-  const imageLoader = ({
-    src,
-    width,
-    quality,
-  }: {
-    src: string;
-    width: number;
-    quality: number;
-  }) => {
-    return `https://example.com/${src}?w=${width}&q=${quality || 75}`;
-  };
 
   return (
     <div
@@ -34,13 +23,13 @@ function Card(props: ProjectType) {
         <div className="absolute w-full h-full z-10 bg-gradient-to-tr from-ash-900 rounded-3xl"></div>
         <Image
           src={props.Cover}
-          alt=""
+          alt={props.Name}
           fill
-          loading="lazy"
-          // loader={imageLoader({ src: props.Cover, width: 400, quality: 75 })}
-          className="absolute h-full w-full object-cover rounded-3xl group-hover:scale-105 transition-all duration-500 ease"
+          priority={props.priority}
+          loading={props.priority ? 'eager' : 'lazy'}
           placeholder="blur"
           blurDataURL="/placeholder.png"
+          className="object-cover"
         />
         <div className="m-4 md:m-10 absolute bottom-0 z-20  group-hover:mx-6 md:group-hover:mx-16 transition-all ease-[cubic-bezier(.57,.21,.69,1.25)]">
           <h1 className="font-normal text-3xl md:text-4xl lg:text-8xl whitespace-nowrap">

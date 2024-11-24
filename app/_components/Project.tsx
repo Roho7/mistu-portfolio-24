@@ -5,6 +5,7 @@ import Dropdown from "./Dropdown";
 import { BiSort } from "react-icons/bi";
 import { FiFilter } from "react-icons/fi";
 import Spinner from "./Spinner";
+import { Suspense } from 'react';
 
 function Project() {
   const scrollRef = useHorizontalScroll();
@@ -31,44 +32,39 @@ function Project() {
           className="relative cards w-full overflow-x-scroll flex gap-10 md:gap-20 px-10 md:px-20 cursor-all-scroll max-md:hidden"
           ref={scrollRef}
         >
-          {loading && <Spinner />}
-          {filteredProjects.map((item) => {
-            return (
-              <Card
-                key={item.Id}
-                Name={item.Name}
-                Type={item.Type}
-                Cover={item.Cover}
-                Software1={item.Software1}
-                Id={item.Id}
-                Relevance={item.Relevance}
-              />
-            );
-          })}
+          {loading ? (
+            <Spinner />
+          ) : (
+            <Suspense fallback={<Spinner />}>
+              {filteredProjects.map((item) => (
+                <Card
+                  key={item.Id}
+                  {...item}
+                  priority={(Number(item.Relevance) <= 2)}
+                />
+              ))}
+            </Suspense>
+          )}
         </div>
         <div className="relative overflow-x-hidden md:hidden">
           <div className="h-[5vh] md:hidden absolute z-20 -top-1 w-full bg-gradient-to-b from-black to-transparent"></div>
           <div
-            className="relative cards w-full overflow-x-scroll md:overflow-x-scroll flex flex-col md:flex-row gap-10 md:gap-20 px-2 md:px-20 snap-y snap-mandatory md:snap-none overflow-y-auto md:cursor-all-scroll h-[40vh] md:h-auto"
+            className="relative cards w-full overflow-x-scroll flex flex-col gap-10 px-2 snap-y snap-mandatory overflow-y-auto h-[40vh]"
           >
-            {loading && <Spinner />}
-            {filteredProjects.map((item) => {
-              return (
-                <div
-                  key={item.Id}
-                  className="snap-center min-w-full md:min-w-fit flex justify-center"
-                >
-                  <Card
-                    Name={item.Name}
-                    Type={item.Type}
-                    Cover={item.Cover}
-                    Software1={item.Software1}
-                    Id={item.Id}
-                    Relevance={item.Relevance}
-                  />
-                </div>
-              );
-            })}
+            {loading ? (
+              <Spinner />
+            ) : (
+              <Suspense fallback={<Spinner />}>
+                {filteredProjects.map((item) => (
+                  <div key={item.Id} className="snap-center min-w-full flex justify-center">
+                    <Card
+                      {...item}
+                      priority={(Number(item.Relevance) <= 2)}
+                    />
+                  </div>
+                ))}
+              </Suspense>
+            )}
           </div>
           <div className="h-[5vh] md:hidden absolute -bottom-1 w-full bg-gradient-to-t from-black to-transparent"></div>
         </div>

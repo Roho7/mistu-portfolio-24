@@ -2,6 +2,8 @@ import React from "react";
 import Line from "../../assets/Line.png";
 import Link from "next/link";
 import Image from "next/image";
+import Tooltip from "./Tooltip";
+import { BiSolidInfoCircle } from "react-icons/bi";
 
 const experience = [
   {
@@ -9,18 +11,21 @@ const experience = [
     role: "Full-Stack Developer",
     year: "2024",
     link: "https://periskope.app/",
+    tip: "One of the first 5 employees here. Built over 10 large features here and still counting."
   },
   {
     company: "SimpliML",
     role: "Full-Stack Developer",
     year: "2023",
     link: "https://simpliml.com/",
+    tip: "Built the foundation of the product here."
   },
   {
     company: "Frenzopay",
     role: "UI/UX Designer",
     year: "2022 - 2023",
     link: "https://frenzopay.com/",
+    tip: "Was the only UI/UX designer here. Built the product from scratch."
   },
 ];
 
@@ -29,16 +34,19 @@ const education = [
     course: "M.Sc. Human-Computer Interaction",
     university: "University of Nottingham",
     year: "2023 - 2024",
+    tip: "Got a Distinction here"
   },
   {
     course: "CS50x: Introduction to Computer Science",
     university: "CS50, Harvard University",
     year: "2023",
+    tip: "Was quite difficult."
   },
   {
     course: "B.Sc. Neuroscience",
     university: "Amity University Noida",
     year: "2020 - 2023",
+    tip: "I started here. With Brains."
   },
 ];
 
@@ -69,9 +77,12 @@ function About() {
             {experience.map((exp) => (
               <div key={exp.company} className="mb-4">
                 <Link href={exp.link}>
-                  <h1 className="about-text" role="button">
-                    {exp.company}
-                  </h1>
+                <h1 className="about-text relative">
+                  <span>{exp.company}</span>
+                  <span className="inline-block ml-2">
+                    <Tooltip trigger={<BiSolidInfoCircle className="text-xs text-grass-500"/>}>{exp.tip}</Tooltip>
+                  </span>
+                </h1>
                 </Link>
                 <h2>{exp.role}</h2>
                 <span className="text-ash-100">{exp.year}</span>
@@ -82,7 +93,12 @@ function About() {
             <h1 className="text-2xl font-normal">Education</h1>
             {education.map((edu) => (
               <div key={edu.course} className="mb-4">
-                <h1 className="about-text">{edu.course}</h1>
+                <h1 className="about-text relative">
+                  <span>{edu.course}</span>
+                  <span className="inline-block ml-2">
+                    <Tooltip trigger={<BiSolidInfoCircle className="text-xs text-grass-500"/>}>{edu.tip}</Tooltip>
+                  </span>
+                </h1>
                 <h2>{edu.university}</h2>
                 <span className="text-ash-100">{edu.year}</span>
               </div>

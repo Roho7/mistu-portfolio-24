@@ -1,10 +1,7 @@
 "use client";
 import React from "react";
 import Logo from "../assets/logo.png";
-import Noise from "../assets/noise-blog.png";
 import Topbar from "./_components/Topbar";
-import SvgGrid from "./_components/SvgGrid";
-import { FaStarOfLife } from "react-icons/fa";
 import About from "./_components/About";
 import Footer from "./_components/Footer";
 import Project from "./_components/Project";
@@ -15,6 +12,8 @@ import Streamer from "./_components/Streamer";
 import { handleScrollSvg } from "./_utils/scroll";
 import { streamers } from "./_utils/data";
 import Scene from "./_components/3DScene";
+import { motion } from "motion/react";
+import Grid from "../assets/grid.svg";
 
 function Page() {
   if (typeof window !== "undefined") {
@@ -31,12 +30,17 @@ function Page() {
             <Image src={Logo} alt="" />
           </div>
           <h2>Rohosen Bhattacharya</h2>
-          <h1>Research</h1>
-          <h1 className="text-grass-500">Design</h1>
-          <h1>Development</h1>
+          <div className="lg:text-[90px] text-4xl">
+          <motion.h1 initial={{ opacity: 0, translateY: -20 }} whileInView={{ opacity: 1, translateY: 0 }} exit={{ opacity: 0, translateY: -10 }} transition={{ duration: 1 }}>Research</motion.h1>
+          <motion.h1 initial={{ opacity: 0, translateX: 20 }} whileInView={{ opacity: 1, translateX: 0 }} exit={{ opacity: 0, translateX: 10 }} transition={{ duration: 1 }} className="text-grass-500">Design</motion.h1>
+            <motion.h1 initial={{ opacity: 0, translateY: 20 }} whileInView={{ opacity: 1, translateY: 0 }} exit={{ opacity: 0, translateY: 10 }} transition={{ duration: 1 }}>Development</motion.h1>
+          </div>
         </div>
 
         <Scene />
+      </div>
+      <div className="absolute top-0 left-0 w-full h-full -z-10">
+        <Image src={Grid} alt="grid" />
       </div>
       <div className="mt-20 md:mt-80 overflow-x-hidden">
         <div className="streamer-container1">
