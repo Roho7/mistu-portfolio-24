@@ -9,12 +9,12 @@ function Quote() {
           👋🏻
         </h2>
         <h2 className="text-md lg:text-lg">
-         <p>  Hi! I'm <span className="text-grass-500">Roho</span>, 
+         <p>  Hi! I&apos;m <span className="text-grass-500">Roho</span>, 
           a <span className="text-grass-500">Software Engineer</span>.</p>
           <br />
-          <p>I'm interested in building products that are <br /> <span className="text-grass-500">useful</span> and <span className="text-grass-500">beautiful</span>.</p>
+          <p>I&apos;m interested in building products that are <br /> <span className="text-grass-500">useful</span> and <span className="text-grass-500">beautiful</span>.</p>
           <br />
-          <p>I'm really quick. So you'll need to keep up.</p>
+          <p>I&apos;m really quick. So you&apos;ll need to keep up.</p>
         </h2>
       </div>
     </div>
