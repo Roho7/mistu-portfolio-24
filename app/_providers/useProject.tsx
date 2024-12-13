@@ -13,7 +13,6 @@ import { set } from "firebase/database";
 interface ProjectContextType {
   projectList: ProjectType[];
   setProjectList: React.Dispatch<React.SetStateAction<ProjectType[]>>;
-  filteredProjects: ProjectType[];
   activeProjectId: string | null;
   setActiveProjectId: React.Dispatch<React.SetStateAction<string | null>>;
   filter: string | null;
@@ -36,6 +35,7 @@ export const ProjectProvider: React.FC<{
   const fetchData = async () => {
     try {
       const data = await getProjects();
+      console.log(data);
       setProjectList(data);
     } catch (error) {
       console.error(error);
@@ -44,9 +44,9 @@ export const ProjectProvider: React.FC<{
     }
   };
 
-  const filteredProjects = useMemo(() => {
-    return filter ? projectList.filter((project) => project.Category === filter) : projectList;
-  }, [projectList, filter]);
+  // const filteredProjects = useMemo(() => {
+  //   return filter ? projectList.filter((project) => project.Category === filter) : projectList;
+  // }, [projectList, filter]);
 
   useEffect(() => {
     fetchData();
@@ -56,7 +56,6 @@ export const ProjectProvider: React.FC<{
     return {
       projectList,
       setProjectList,
-      filteredProjects,
       activeProjectId,
       setActiveProjectId,
       filter,
@@ -66,7 +65,7 @@ export const ProjectProvider: React.FC<{
       // filter,
       // setFilter,
     };
-  }, [filter, projectList, filteredProjects, loading]);
+  }, [filter, projectList, , loading]);
 
   return (
     <ProjectContext.Provider value={values}>{children}</ProjectContext.Provider>

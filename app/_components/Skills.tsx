@@ -24,6 +24,7 @@ import {
   BiLogoFlask,
 } from "react-icons/bi";
 import { skillArray } from "../_utils/data";
+import Badge from "./Badge";
 
 function Skills() {
   return (
@@ -33,19 +34,12 @@ function Skills() {
         <div className="absolute h-0.5 w-full bg-grass-500"></div>
       </div>
       <div className="grid gap-y-8 md:grid-cols-4 md:gap-16 p-10">
-        <div>
+        <div className="flex gap-2">
           {skillArray
             .filter((item) => item.type === "languages")
             .map((skill, index) => {
               return (
-                <div
-                  className=" text-ash-100 flex items-center gap-2 whitespace-nowrap"
-                  key={index}>
-                  <div className="text-grass-500 -translate-y-2">
-                    {skill.icon}
-                  </div>
-                  <span> {skill.name} </span>
-                </div>
+                <Badge key={index} size="md" icon={true}>{skill.name}</Badge> 
               );
             })}
         </div>
