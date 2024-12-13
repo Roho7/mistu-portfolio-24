@@ -9,7 +9,7 @@ const PopupProject = () => {
   const router = useRouter();
 
   const currentIndex = projectList.findIndex(
-    (project) => project.Id === activeProjectId,
+    (project) => project.id === activeProjectId,
   );
 
   var randomIndex = Math.floor(Math.random() * projectList.length);
@@ -20,12 +20,12 @@ const PopupProject = () => {
     <div
       className="rounded-lg max-w-[5rem] md:max-w-[15rem] flex flex-col gap-2 group relative z-20"
       role="button"
-      onClick={() => router.push(`/project/${projectList[randomIndex].Id}`)}>
+      onClick={() => router.push(`/project/${projectList[randomIndex].id}`)}>
       <h2 className="text-white text-sm md:text-2xl flex items-center gap-2 whitespace-nowrap">
         See Also <BiChevronRight />
       </h2>
       <Image
-        src={projectList[randomIndex].Cover}
+        src={projectList[randomIndex].cover}
         alt=""
         height={200}
         width={200}
