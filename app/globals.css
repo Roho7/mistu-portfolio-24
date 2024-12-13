@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@400;700&family=Montserrat:wght@400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:wght@100..900&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -10,13 +10,13 @@ html {
   max-width: 100vw;
 }
 :root {
-  @apply bg-ash-900 overflow-x-hidden;
+  @apply bg-black overflow-x-hidden;
 }
 body {
   overflow-x: hidden;
 }
 h1 {
-  @apply font-display font-bold text-7xl lg:text-8xl xl:text-9xl text-white;
+  @apply font-display text-7xl lg:text-8xl xl:text-9xl text-white;
 }
 
 h2 {
@@ -79,7 +79,7 @@ button {
 }
 
 .about-cards {
-  @apply h-full w-full bg-ash-500 rounded-3xl bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-20 border border-gray-100;
+  @apply h-full w-full bg-white/5 rounded-3xl bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-white;
 }
 .sine-container {
   animation: moving 15s linear infinite;
@@ -95,7 +95,7 @@ button {
 }
 
 .about-text {
-  @apply text-4xl xl:text-6xl font-medium;
+  @apply text-4xl xl:text-6xl font-light;
 }
 
 .streamer-text {

@@ -8,8 +8,8 @@ const config: Config = {
   ],
   theme: {
     fontFamily: {
-      display: "Darker Grotesque, sans-serif",
-      sans: "Montserrat, sans-serif",
+      display: "DM Sans, sans-serif",
+      sans: "DM Sans, sans-serif",
     },
     extend: {
       spacing: {
@@ -17,12 +17,13 @@ const config: Config = {
         160: "48rem",
       },
       colors: {
+        black: "#161616",
         grass: {
           100: "#E7F69B",
-          500: "#AEC926",
+          500: "#26F7FD",
           800: "#556508",
         },
-        white: "#FFFEFE",
+        white: "#E9EBEE",
         ash: {
           100: "#A9B9BD",
           500: "#3A5359",

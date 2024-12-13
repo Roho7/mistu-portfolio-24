@@ -14,6 +14,7 @@ import { streamers } from "./_utils/data";
 import Scene from "./_components/3DScene";
 import { motion } from "motion/react";
 import Grid from "../assets/grid.svg";
+import { PiUserCircleDuotone } from "react-icons/pi";
 
 function Page() {
   if (typeof window !== "undefined") {
@@ -25,34 +26,17 @@ function Page() {
     <>
       <Topbar />
       <div className="flex relative mt-10" id="hero">
-        <div className="mx-4 lg:mx-20 z-10">
-          <div className="h-10 w-10 mb-3 object-contain">
-            <Image src={Logo} alt="" />
-          </div>
-          <h2>Rohosen Bhattacharya</h2>
+        <div className="mx-4 lg:mx-20 z-10 flex items-center">
+          <div className="text-4xl text-white"><PiUserCircleDuotone size={400}/></div>
           <div className="lg:text-[90px] text-4xl">
-          <motion.h1 initial={{ opacity: 0, translateY: -20 }} whileInView={{ opacity: 1, translateY: 0 }} exit={{ opacity: 0, translateY: -10 }} transition={{ duration: 1 }}>Research</motion.h1>
-          <motion.h1 initial={{ opacity: 0, translateX: 20 }} whileInView={{ opacity: 1, translateX: 0 }} exit={{ opacity: 0, translateX: 10 }} transition={{ duration: 1 }} className="text-grass-500">Design</motion.h1>
-            <motion.h1 initial={{ opacity: 0, translateY: 20 }} whileInView={{ opacity: 1, translateY: 0 }} exit={{ opacity: 0, translateY: 10 }} transition={{ duration: 1 }}>Development</motion.h1>
+          <motion.h1 initial={{ opacity: 0, translateY: -20 }} whileInView={{ opacity: 1, translateY: 0 }} exit={{ opacity: 0, translateY: -10 }} transition={{ duration: 1 }}>Hi!</motion.h1>
+          <motion.h1 initial={{ opacity: 0, translateX: 20 }} whileInView={{ opacity: 1, translateX: 0 }} exit={{ opacity: 0, translateX: 10 }} transition={{ duration: 1 }} className="text-white">I am{" "}<span className="text-grass-500 font-bold italic">Mistu</span></motion.h1>
           </div>
         </div>
 
-        <Scene />
       </div>
       <div className="absolute top-0 left-0 w-full h-full -z-10">
         <Image src={Grid} alt="grid" />
-      </div>
-      <div className="mt-20 md:mt-80 overflow-x-hidden">
-        <div className="streamer-container1">
-          {streamers.streamerArray1.map((txt, index) => {
-            return <Streamer text={txt} key={index} />;
-          })}
-        </div>
-        <div className="streamer-container2 ">
-          {streamers.streamerArray2.map((txt, index) => {
-            return <Streamer text={txt} key={index} />;
-          })}
-        </div>
       </div>
       <Project />
       <Quote />

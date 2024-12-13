@@ -67,25 +67,24 @@ function ProjectPage({ params }: { params: { id: string } }) {
       <Button size="md" color="grass" buttonProps={{ className: "m-8 mb-0" }} onClick={handleBackButton}>
         <FaAngleLeft /> Back
       </Button>
-      <div key={project.Id} className="relative flex flex-col">
+      <div key={project.id} className="relative flex flex-col">
         <div className="m-8 mt-2">
-          <h1 className="">{project.Name}</h1>
-          <h1 className="text-4xl mb-4 text-ash-100">{project.Type}</h1>
-          <h2 className="font-bold text-xl">Context</h2>
-          <h2 className="mb-4 md:w-1/2">{project.Description}</h2>
+          <h1 className="">{project.title}</h1>
+          {/* <h2 className="font-bold text-xl">Context</h2> */}
+          {/* <h2 className="mb-4 md:w-1/2">{project.Description}</h2> */}
           <div className="flex gap-4 mb-2">
-            {project.Software1 && <Badge size="sm">{project.Software1}</Badge>}
-            {project.Software2 && <Badge size="sm">{project.Software2}</Badge>}
+            {project.badge1 && <Badge size="sm">{project.badge1}</Badge>}
+            {project.badge2 && <Badge size="sm">{project.badge2}</Badge>}
           </div>
-          {project.Link && <Button size="sm" onClick={() => window.open(project.Link, "_blank")} color="white" icon={getProjectLinkType(project.Link) === "external" ? <FaGlobe /> : <FaGithub />}>View Project</Button>}
+          {/* {project.Link && <Button size="sm" onClick={() => window.open(project.Link, "_blank")} color="white" icon={getProjectLinkType(project.Link) === "external" ? <FaGlobe /> : <FaGithub />}>View Project</Button>} */}
         </div>
-        {project.Video && (
+        {project.video && (
           <div className="h-72 md:h-screen">
             <iframe
               width="100%"
               height="100%"
-              src={`https://www.youtube.com/embed/${project.Video}`}
-              className={project.Video ? "w-full h-full" : "hidden"}
+              src={`https://www.youtube.com/embed/${project.video}`}
+              className={project.video ? "w-full h-full" : "hidden"}
             ></iframe>
           </div>
         )}
@@ -102,10 +101,10 @@ function ProjectPage({ params }: { params: { id: string } }) {
               </div>
             }
           >
-            {project.Image && (
+            {project.main_image && (
               <Image
-                src={project.Image}
-                alt={project.Name}
+                src={project.main_image}
+                alt={project.title}
                 loading={"eager"}
                 width={10000}
                 height={1000}

@@ -12,9 +12,8 @@ import { ProjectType } from "../_utils/types";
 
 export const getProjects = async () => {
   const dataRef = query(
-    collection(db, "Project"),
-    orderBy("Timestamp", "desc"),
-    where("hidden", "!=", true),
+    collection(db, "Projects"),
+    orderBy("timestamp", "desc"),
   );
 
   const data = await getDocs(dataRef);
@@ -22,7 +21,7 @@ export const getProjects = async () => {
     ...(doc.data() as ProjectType),
     Id: doc.id,
   }));
-
+  console.log(filteredData);
   return filteredData;
 };
 

@@ -9,7 +9,7 @@ import { Suspense } from 'react';
 
 function Project() {
   const scrollRef = useHorizontalScroll();
-  const { filteredProjects, setFilter, loading, } = useProject();
+  const { setFilter, loading, projectList } = useProject();
 
 
   return (
@@ -36,11 +36,10 @@ function Project() {
             <Spinner />
           ) : (
             <Suspense fallback={<Spinner />}>
-              {filteredProjects.map((item) => (
+              {projectList.map((item) => (
                 <Card
-                  key={item.Id}
+                  key={item.id}
                   {...item}
-                  priority={(Number(item.Relevance) <= 2)}
                 />
               ))}
             </Suspense>
@@ -55,11 +54,10 @@ function Project() {
               <Spinner />
             ) : (
               <Suspense fallback={<Spinner />}>
-                {filteredProjects.map((item) => (
-                  <div key={item.Id} className="snap-center min-w-full flex justify-center">
+                {projectList.map((item) => (
+                  <div key={item.timestamp} className="snap-center min-w-full flex justify-center">
                     <Card
                       {...item}
-                      priority={(Number(item.Relevance) <= 2)}
                     />
                   </div>
                 ))}

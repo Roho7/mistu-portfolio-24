@@ -1,15 +1,10 @@
 export type ProjectType = {
-  Name: string;
-  Type: string;
-  Cover: string;
-  Software1: string;
-  Software2?: string;
-  Id: string;
-  Video?: string;
-  Description?: string;
-  Link?: string;
-  Image?: string;
-  Category?: string;
-  Timestamp?: string;
-  Relevance: string;
+ id: string;
+ title: string;
+ main_image: string;
+ timestamp: string;
+ cover: string;
+ badge1: string;
+ badge2: string;
+ video?: string;
 };
