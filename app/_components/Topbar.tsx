@@ -19,10 +19,6 @@ function Topbar() {
         </div>
       )}
       <div className="flex gap-8">
-        <FaGithub
-          onClick={() => router.push("https://github.com/Roho7")}
-          className="cursor-pointer"
-        />
         <FaTwitterSquare
           onClick={() => router.push("https://twitter.com/Rohosen_")}
           className="cursor-pointer"

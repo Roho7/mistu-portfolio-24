@@ -6,8 +6,8 @@ import { ProjectProvider } from "./_providers/useProject";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Rohosen Bhattacharya",
-  description: "Roho's personal website",
+  title: "Suchismita Das",
+  description: "Suchismita's personal website",
 };
 
 export default function RootLayout({

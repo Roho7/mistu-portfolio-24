@@ -13,6 +13,7 @@ import React, { Suspense, useEffect, useState } from "react";
 import { FaAngleLeft, FaGithub, FaGlobe } from "react-icons/fa";
 import Button from "@/app/_components/Button";
 import Badge from "@/app/_components/Badge";
+import { PiStarFourBold } from "react-icons/pi";
 
 function getProjectLinkType(link: string){
   if(link.includes("youtube.com")){
@@ -73,8 +74,8 @@ function ProjectPage({ params }: { params: { id: string } }) {
           {/* <h2 className="font-bold text-xl">Context</h2> */}
           {/* <h2 className="mb-4 md:w-1/2">{project.Description}</h2> */}
           <div className="flex gap-4 mb-2">
-            {project.badge1 && <Badge size="sm">{project.badge1}</Badge>}
-            {project.badge2 && <Badge size="sm">{project.badge2}</Badge>}
+            {project.badge1 && <Badge size="sm" icon={<PiStarFourBold className="text-grass-500"/>}>{project.badge1}</Badge>}
+            {project.badge2 && <Badge size="sm" icon={<PiStarFourBold className="text-grass-500"/>}>{project.badge2}</Badge>}
           </div>
           {/* {project.Link && <Button size="sm" onClick={() => window.open(project.Link, "_blank")} color="white" icon={getProjectLinkType(project.Link) === "external" ? <FaGlobe /> : <FaGithub />}>View Project</Button>} */}
         </div>

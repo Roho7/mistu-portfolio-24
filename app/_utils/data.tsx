@@ -25,136 +25,77 @@ import {
   SiUnity,
 } from "react-icons/si";
 
-export const streamers = {
-  streamerArray1: [
-    "html",
-    "javascript",
-    "css",
-    "typescript",
-    "reactjs",
-    "nextjs",
-    "tailwind",
-    "nodejs",
-    "firebase",
-    "illustrator",
-    "after effects",
-  ],
-  streamerArray2: [
-    "motion graphics",
-    "ui/ux",
-    "full-stack",
-    "frontend",
-    "hci",
-    "web design",
-    "software development",
-    "product design",
-  ],
-};
+
 
 export const skillArray = [
   {
-    type: "development",
-    name: "NEXT.js",
-    icon: <SiNextdotjs />,
+    type: "skill",
+    name: "UI Design",
+    highlighted: false
   },
   {
-    type: "development",
-    name: "React",
-    icon: <BiLogoReact />,
+    type: "skill", 
+    name: "User Experience",
+    highlighted: true
   },
   {
-    type: "development",
-    name: "React Native",
-    icon: <FaReact />,
+    type: "skill",
+    name: "Interaction Design",
+    highlighted: false
   },
   {
-    type: "development",
-    name: "Tailwind",
-    icon: <BiLogoTailwindCss />,
+    type: "skill",
+    name: "Design-to-Development Collaboration",
+    highlighted: false
   },
   {
-    type: "development",
-    name: "NodeJS",
-    icon: <BiLogoNodejs />,
+    type: "skill",
+    name: "Wireframing",
+    highlighted: true
   },
   {
-    type: "development",
-    name: "Supabase",
-    icon: <RiSupabaseFill />,
+    type: "skill",
+    name: "Motion Graphics",
+    highlighted: true
   },
   {
-    type: "development",
-    name: "Firebase",
-    icon: <BiLogoFirebase />,
+    type: "skill",
+    name: "Graphic Design",
+    highlighted: false
   },
   {
-    type: "development",
-    name: "Flask",
-    icon: <BiLogoFlask />,
-  },
-  {
-    type: "development",
-    name: "Unity",
-    icon: <SiUnity />,
-  },
-  {
-    type: "languages",
-    name: "Typescript",
-    icon: <BiLogoTypescript />,
-  },
-  {
-    type: "languages",
-    name: "Javascript",
-    icon: <BiLogoJavascript />,
-  },
-  {
-    type: "languages",
-    name: "Python",
-    icon: <BiLogoPython />,
-  },
-  {
-    type: "languages",
-    name: "C",
-    icon: <SiC />,
-  },
-  {
-    type: "languages",
-    name: "C#",
-    icon: <SiCsharp />,
-  },
-  {
-    type: "ui",
+    type: "software",
     name: "Figma",
-    icon: <BiLogoFigma />,
+    highlighted: false
   },
   {
-    type: "ui",
-    name: "AdobeXD",
-    icon: <SiAdobexd />,
+    type: "software",
+    name: "Framer",
+    highlighted: true
   },
   {
-    type: "design",
+    type: "software",
+    name: "Wix",
+    highlighted: true
+  },
+  {
+    type: "software",
     name: "After Effects",
-    icon: <SiAdobeaftereffects />,
+    highlighted: true
   },
   {
-    type: "design",
-    name: "Illustrator",
-    icon: <SiAdobeillustrator />,
-  },
-  {
-    type: "design",
+    type: "software",
     name: "Photoshop",
-    icon: <SiAdobephotoshop />,
+    highlighted: false
   },
   {
-    type: "pkm",
-    name: "Obsidian",
-    icon: <SiObsidian />,
+    type: "software",
+    name: "Illustrator",
+    highlighted: false
   },
   {
-    type: "pkm",
-    name: "Notion",
-    icon: <SiNotion />,
-  },
+    type: "software",
+    name: "Premiere Pro",
+    highlighted: true
+  }
 ];

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactElement } from 'react'
 import { FaCss3 } from 'react-icons/fa'
 import { FaJs } from 'react-icons/fa'
 import { FaReact } from 'react-icons/fa'
@@ -10,7 +10,8 @@ type Props = {
     size: "sm" | "md" | "lg"
     children: React.ReactNode
     highlight?: boolean
-    icon?: boolean
+    icon: ReactElement
+    highlighted?: boolean
 }
 
 const sizeClasses = {
@@ -23,8 +24,8 @@ const sizeClasses = {
 
 const Badge = (props: Props) => {
   return (
-    <div className={`${sizeClasses[props.size]} flex items-center gap-2 rounded-full h-fit text-white outline outline-1 outline-white grow-0 shrink-0`}>
-      {props.icon && <PiStarFourBold className="text-grass-500"/>}
+    <div className={`${sizeClasses[props.size]} flex items-center gap-2 rounded-full h-fit text-white outline outline-1 outline-white grow-0 shrink-0 ${props.highlighted ? "bg-grass-500/20" : ""}`}>
+      {props.icon && props.icon}
       {props.children}
     </div>
   )

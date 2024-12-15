@@ -5,6 +5,7 @@ import { useProject } from "../_providers/useProject";
 import Image from "next/image";
 import Badge from "./Badge";
 import { motion } from "motion/react";
+import { PiStarFourBold } from "react-icons/pi";
 
 function Card(props: ProjectType) {
   const router = useRouter();
@@ -39,8 +40,8 @@ function Card(props: ProjectType) {
           <div 
             className="flex opacity-0 group-hover:opacity-100 gap-2 transition-all duration-300 ease-[cubic-bezier(.57,.21,.69,1.25)] group-hover:translate-y-0"
           >
-            {props.badge1 && <Badge size="sm">{props.badge1}</Badge>}
-            {props.badge2 && <Badge size="sm">{props.badge2}</Badge>}
+            {props.badge1 && <Badge size="sm" icon={<PiStarFourBold className="text-grass-500"/>}>{props.badge1}</Badge>}
+            {props.badge2 && <Badge size="sm" icon={<PiStarFourBold className="text-grass-500"/>}>{props.badge2}</Badge>}
           </div>
         </div>
       </div>
