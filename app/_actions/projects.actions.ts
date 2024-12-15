@@ -19,7 +19,7 @@ export const getProjects = async () => {
   const data = await getDocs(dataRef);
   const filteredData = data.docs.map((doc) => ({
     ...(doc.data() as ProjectType),
-    Id: doc.id,
+    id: doc.id,
   }));
   return filteredData;
 };
@@ -40,7 +40,7 @@ export const getProjectsByCategory = async (category: string) => {
 };
 
 export const getSingleProject = async (id: string) => {
-  const projectRef = doc(db, "Project", id);
+  const projectRef = doc(db, "Projects", id);
 
   const data = await getDoc(projectRef);
   const filteredData = data.data();

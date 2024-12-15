@@ -11,6 +11,7 @@ function Card(props: ProjectType) {
   const router = useRouter();
   const { setActiveProjectId } = useProject();
 
+
   const handleCardClick = (link: string) => {
     setActiveProjectId(link);
     router.push(`/project/${link}`);

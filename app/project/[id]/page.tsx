@@ -70,7 +70,7 @@ function ProjectPage({ params }: { params: { id: string } }) {
       </Button>
       <div key={project.id} className="relative flex flex-col">
         <div className="m-8 mt-2">
-          <h1 className="">{project.title}</h1>
+          <h1 className="mb-4">{project.title}</h1>
           {/* <h2 className="font-bold text-xl">Context</h2> */}
           {/* <h2 className="mb-4 md:w-1/2">{project.Description}</h2> */}
           <div className="flex gap-4 mb-2">

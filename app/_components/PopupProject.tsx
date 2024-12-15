@@ -2,20 +2,25 @@ import Image from "next/image";
 import { useProject } from "../_providers/useProject";
 import { BiChevronRight } from "react-icons/bi";
 import { useRouter } from "next/navigation";
+import { useMemo } from "react";
 
 const PopupProject = () => {
   const { projectList, activeProjectId } = useProject();
 
   const router = useRouter();
 
-  const currentIndex = projectList.findIndex(
-    (project) => project.id === activeProjectId,
-  );
+  
+  const randomIndex = useMemo(() => {
+    const currentIndex = projectList.findIndex(
+      (project) => project.id === activeProjectId,
+    );
+    let randomIndex = Math.floor(Math.random() * projectList.length);
+    if (randomIndex == currentIndex) {
+      randomIndex = randomIndex + 1;
+    }
+    return randomIndex;
+  }, [activeProjectId]);
 
-  var randomIndex = Math.floor(Math.random() * projectList.length);
-  if (randomIndex === currentIndex) {
-    randomIndex = randomIndex + 1;
-  }
   return (
     <div
       className="rounded-lg max-w-[5rem] md:max-w-[15rem] flex flex-col gap-2 group relative z-20"

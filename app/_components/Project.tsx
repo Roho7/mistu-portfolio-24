@@ -11,6 +11,8 @@ function Project() {
   const scrollRef = useHorizontalScroll();
   const { setFilter, loading, projectList } = useProject();
 
+  console.log(projectList);
+
 
   return (
     <section className="relative mt-20 mb-20 md:mt-40 md:mb-40">
