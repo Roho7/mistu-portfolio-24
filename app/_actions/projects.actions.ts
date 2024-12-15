@@ -21,7 +21,6 @@ export const getProjects = async () => {
     ...(doc.data() as ProjectType),
     Id: doc.id,
   }));
-  console.log(filteredData);
   return filteredData;
 };
 

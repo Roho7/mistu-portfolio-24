@@ -35,7 +35,6 @@ export const ProjectProvider: React.FC<{
   const fetchData = async () => {
     try {
       const data = await getProjects();
-      console.log(data);
       setProjectList(data);
     } catch (error) {
       console.error(error);
