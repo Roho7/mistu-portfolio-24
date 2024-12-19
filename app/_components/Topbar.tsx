@@ -2,7 +2,7 @@ import { useRouter } from "next/navigation";
 import Logo from "../../assets/logo.svg";
 import React from "react";
 import Image from "next/image";
-import { FaGithub, FaTwitterSquare, FaLinkedin } from "react-icons/fa";
+import { FaGithub, FaTwitterSquare, FaLinkedin, FaBehance } from "react-icons/fa";
 
 function Topbar() {
   const router = useRouter();
@@ -19,15 +19,17 @@ function Topbar() {
           <Image src={Logo} alt="Logo" width={50} height={50} />
         </div>
       )}
+
+
       <div className="flex gap-8">
-        <FaTwitterSquare
-          onClick={() => router.push("https://twitter.com/Rohosen_")}
+        <FaBehance
+          onClick={() => router.push("https://www.behance.net/suchismitadas2")}
           className="cursor-pointer"
         />
         <FaLinkedin
           onClick={() =>
             router.push(
-              "https://www.linkedin.com/in/rohosen-bhattacharya-9311611aa/",
+              "https://www.linkedin.com/in/suchismita-das-551b44227/",
             )
           }
           className="cursor-pointer"

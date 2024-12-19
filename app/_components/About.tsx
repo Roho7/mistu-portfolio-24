@@ -43,7 +43,7 @@ function About() {
           <div className="absolute h-0.5 w-full bg-grass-500"></div>
         </div>
 
-        <div className="grid lg:grid-cols-4 gap-4">
+        <div className="grid lg:grid-cols-4 grid-cols-2 gap-4">
           <div className="about-cards p-8">
             <h1 className="text-2xl font-normal">Age</h1>
             <h1 className="about-text">22</h1>
@@ -52,7 +52,7 @@ function About() {
             <h1 className="text-2xl font-normal">Location</h1>
             <h1 className="about-text">India</h1>
           </div>
-          <div className="about-cards p-8 lg:col-span-2 lg:row-span-2">
+          <div className="about-cards p-8 col-span-2 lg:row-span-2">
             <h1 className="text-2xl font-normal">Experience</h1>
             {experience.map((exp) => (
               <div key={exp.company} className="mb-4">
@@ -66,7 +66,7 @@ function About() {
               </div>
             ))}
           </div>
-          <div className="about-cards p-8 lg:col-span-2">
+          <div className="about-cards p-8 col-span-2">
             <h1 className="text-2xl font-normal">Education</h1>
             {education.map((edu) => (
               <div key={edu.course} className="mb-4">

@@ -35,7 +35,7 @@ function Skills() {
         <h1>Skills</h1>
         <div className="absolute h-0.5 w-full bg-grass-500"></div>
       </div>
-      <div className="grid md:grid-cols-2 p-10 gap-4 mx-auto w-full">
+      <div className="grid md:grid-cols-2 p-10 gap-4 w-full">
         <div className="flex gap-2 flex-wrap h-fit">
           {skillArray
             .filter((item) => item.type === "skill")
